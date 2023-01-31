@@ -27,3 +27,46 @@ do
     singletFlip[$combination]=$percent
     echo "The percentage of $combination is ${singletFlip[$combination]}%"
 done
+
+echo -e "\n"
+
+declare -A doubletFlip
+
+doubletFlip[HH]=0
+doubletFlip[HT]=0
+doubletFlip[TT]=0
+doubletFlip[HH]=0
+echo "The following is calculation of doublet combination"
+
+for(( flip = 1; flip <= num; flip++ ))
+do
+	echo -n "Flip number of $flip is "
+        ((counter1 = RANDOM%2))
+        ((counter2 = RANDOM%2))
+
+        case $counter1$counter2 in
+        	00)
+            		echo "Heads Heads"
+            		(( doubletFlip[HH]++ ))
+            		;;
+        	01)
+            		echo "Heads Tails"
+            		(( doubletFlip[HT]++ ))
+            		;;
+        	10)
+            		echo "Tails Heads"
+            		(( doubletFlip[TH]++ ))
+            		;;
+        	11)
+            		echo "Tails Tails"
+            		(( doubletFlip[TT]++ ))
+            		;;
+    	esac
+done
+
+for combination in ${!doubletFlip[@]}
+do
+	percent=$(( ${doubletFlip[$combination]}  * 100 / num ))
+        doubletFlip[$combination]=$percent
+        echo "The percentage of $combination is ${doubletFlip[$combination]}%"
+done
