@@ -132,4 +132,3 @@ do
     percent=$(( ${tripletFlip[$combination]}  * 100 / num ))
     echo "The percentage of $combination is $percent%"
 done
-
